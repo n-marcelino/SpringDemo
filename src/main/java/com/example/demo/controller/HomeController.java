@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.UserSession;
-import com.example.demo.util.UsersUtil;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +13,9 @@ public class HomeController {
 
     @Autowired
     private UserSession userSession;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -31,7 +34,7 @@ public class HomeController {
     public String login(String username, String password) {
         // Your authentication logic goes here (e.g., check username/password against database)
         System.out.println("username: " + username + ", password: " + password);
-        if (UsersUtil.userMap.containsKey(username) && UsersUtil.userMap.get(username).equals(password)) {
+        if (userService.validateUser(username,password)) {
             userSession.setUsername(username);
             return "redirect:/";
         } else {
