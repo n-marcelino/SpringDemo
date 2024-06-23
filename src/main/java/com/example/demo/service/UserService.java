@@ -17,9 +17,9 @@ public class UserService {
     private UserSession userSession;
 
     public UserService(){
-        userMap.put("marcus", "password1");
-        userMap.put("joaquin", "password2");
-        userMap.put("paler", "password3");
+        userMap.put("nico", "jimin");
+        userMap.put("desmond", "miles");
+        userMap.put("ezio", "auditore");
     }
 
     public User findByUsername(String username){

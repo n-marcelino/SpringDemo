@@ -20,40 +20,6 @@ table, th, td {
 <body>
 	<h1>Grade Page</h1>
 
-	<%
-	// Dummy grades data
-	Map<String, Integer> grades = new HashMap<>();
-	grades.put("Admin", 90);
-	grades.put("John", 80);
-	grades.put("Mary", 100);
-	grades.put("Peter", 80);
-
-	// Current user's grades data
-	String username = (String) session.getAttribute("user_name");
-	String grade = "N/A"; // Default value if no grade is found
-
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cookie : cookies) {
-			if ("quiz_result".equals(cookie.getName())) {
-		grade = cookie.getValue();
-		break;
-			}
-		}
-	}
-
-	// Adding the user's grades to hasmap if available
-	if (username != null && !grade.equals("N/A")) {
-		grades.put(username, (int) Double.parseDouble(grade));
-	}
-
-	// Sort the grades by value in descending order
-	List<Map.Entry<String, Integer>> sortedGrades = new ArrayList<>(grades.entrySet());
-	sortedGrades.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
-
-	pageContext.setAttribute("grades", sortedGrades);
-	%>
-
 	<table>
 		<tr>
 			<th>Username</th>
@@ -68,7 +34,7 @@ table, th, td {
 	</table>
 	
 	<br>
-	<a href="home.jsp">Return home</a>
+	<a href="/">Return home</a>
 	<br>
 
 </body>

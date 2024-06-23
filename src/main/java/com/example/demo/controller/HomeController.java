@@ -20,7 +20,6 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         if(userSession.getUsername()==null) return "redirect:/login";
-        model.addAttribute("message", "Hello, Springs Boot with JSP!");
         model.addAttribute("userSession", userSession);
         return "home";
     }
@@ -44,7 +43,7 @@ public class HomeController {
 
     @GetMapping("/logout")
     public String logout() {
-        userSession.setUsername(null);
+        userSession.reset();
         return "redirect:/login";
     }
 }

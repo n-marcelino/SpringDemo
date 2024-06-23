@@ -11,18 +11,12 @@
 </head>
 <body>
 
-<!-- get current session user and cookies -->
-<c:set var="quizCompleted" value="false" scope="session"/>
-<c:forEach var="cookie" items="${cookies}">
-    <c:if test="${cookie.name eq 'quiz_completed'}">
-        <c:set var="quizCompleted" value="true" scope="session"/>
-    </c:if>
-</c:forEach>
 <c:if test="${not empty userSession.username}">
     <h1>Welcome, ${userSession.username}</h1>
 </c:if>
+
 <c:choose>
-    <c:when test="${quizCompleted}">
+    <c:when test="${userSession.quizCompleted}">
         <c:set var="linkText" value="Retake a Quiz"/>
     </c:when>
     <c:otherwise>
@@ -30,12 +24,12 @@
     </c:otherwise>
 </c:choose>
 
-<a href="form">${linkText}</a>
+<a href="quiz">${linkText}</a>
 
 <br>
 <a href="grade">View Grades</a>
 <br>
 <br>
-<a href="login">Logout</a>
+<a href="logout">Logout</a>
 </body>
 </html>
