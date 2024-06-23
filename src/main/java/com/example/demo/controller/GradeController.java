@@ -15,9 +15,6 @@ public class GradeController {
     @Autowired
     private UserSession userSession;
 
-    @Autowired
-    private QuizService quizService;
-
     // Endpoint to display grade page
     @GetMapping("/grade")
     public String showGrades(Model model) {
