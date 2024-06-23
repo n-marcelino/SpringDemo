@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.UserSession;
+import com.example.demo.util.UsersUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class HomeController {
     public String login(String username, String password) {
         // Your authentication logic goes here (e.g., check username/password against database)
         System.out.println("username: " + username + ", password: " + password);
-        if ("jun".equals(username) && "123".equals(password)) {
+        if (UsersUtil.userMap.containsKey(username) && UsersUtil.userMap.get(username).equals(password)) {
             userSession.setUsername(username);
             return "redirect:/";
         } else {
